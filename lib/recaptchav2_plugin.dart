@@ -70,7 +70,7 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
   @override
   Widget build(BuildContext context) {
     return controller.visible
-        ? Stack(
+        ? SimpleDialog(
       children: <Widget>[
         WebView(
           initialUrl: "${widget.pluginURL}?api_key=${widget.apiKey}",
