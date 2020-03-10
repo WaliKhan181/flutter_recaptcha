@@ -71,50 +71,53 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
   Widget build(BuildContext context) {
     return controller.visible
         ? SimpleDialog(
-      children: <Widget>[
-        WebView(
-          initialUrl: "${widget.pluginURL}?api_key=${widget.apiKey}",
-          javascriptMode: JavascriptMode.unrestricted,
-          javascriptChannels: <JavascriptChannel>[
-            JavascriptChannel(
-              name: 'RecaptchaFlutterChannel',
-              onMessageReceived: (JavascriptMessage receiver) {
-                // print(receiver.message);
-                String _token = receiver.message;
-                if (_token.contains("verify")) {
-                  _token = _token.substring(7);
-                }
-                widget.response(_token);
-                controller.hide();
-              },
-            ),
-          ].toSet(),
-          onWebViewCreated: (_controller) {
-            webViewController = _controller;
-          },
-        ),
-        if (widget.addCancelButton)
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              height: 60,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    child: RaisedButton(
-                      child: Text(widget.cancelButtonLabel),
-                      onPressed: () {
-                        controller.hide();
-                      },
+            children: <Widget>[
+              Container(
+                  height: 50.0,
+                  width: 50.0,
+                  child: WebView(
+                    initialUrl: "${widget.pluginURL}?api_key=${widget.apiKey}",
+                    javascriptMode: JavascriptMode.unrestricted,
+                    javascriptChannels: <JavascriptChannel>[
+                      JavascriptChannel(
+                        name: 'RecaptchaFlutterChannel',
+                        onMessageReceived: (JavascriptMessage receiver) {
+                          // print(receiver.message);
+                          String _token = receiver.message;
+                          if (_token.contains("verify")) {
+                            _token = _token.substring(7);
+                          }
+                          widget.response(_token);
+                          controller.hide();
+                        },
+                      ),
+                    ].toSet(),
+                    onWebViewCreated: (_controller) {
+                      webViewController = _controller;
+                    },
+                  )),
+              if (widget.addCancelButton)
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SizedBox(
+                    height: 60,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        Expanded(
+                          child: RaisedButton(
+                            child: Text(widget.cancelButtonLabel),
+                            onPressed: () {
+                              controller.hide();
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-      ],
-    )
+                ),
+            ],
+          )
         : Container();
   }
 }
