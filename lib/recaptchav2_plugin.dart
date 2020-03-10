@@ -73,8 +73,8 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
         ? SimpleDialog(
             children: <Widget>[
               Container(
-                  height: MediaQuery.of(context).size.height/2.5,
-                  width: MediaQuery.of(context).size.width/2,
+                  height: MediaQuery.of(context).size.height/1.75,
+                  width: MediaQuery.of(context).size.width/1.75,
                   child: WebView(
                     initialUrl: "${widget.pluginURL}?api_key=${widget.apiKey}",
                     javascriptMode: JavascriptMode.unrestricted,
