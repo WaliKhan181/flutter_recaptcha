@@ -74,7 +74,7 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
             children: <Widget>[
               Container(
                   height: MediaQuery.of(context).size.height/1.5,
-                  width: MediaQuery.of(context).size.width/1.5,
+                  width: MediaQuery.of(context).size.width/1.2,
                   child: WebView(
                     initialUrl: "${widget.pluginURL}?api_key=${widget.apiKey}&t=${DateTime.now().millisecondsSinceEpoch}",
                     javascriptMode: JavascriptMode.unrestricted,
