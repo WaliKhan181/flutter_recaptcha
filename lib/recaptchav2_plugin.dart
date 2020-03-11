@@ -100,7 +100,7 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
               if (widget.addCancelButton)
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Container(
+                  child: SizedBox(
                     height: 60,
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
