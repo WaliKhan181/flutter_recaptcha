@@ -73,10 +73,11 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
         ? SimpleDialog(
             children: <Widget>[
               Container(
-                  height: MediaQuery.of(context).size.height/1.5,
-                  width: MediaQuery.of(context).size.width/1.2,
+                  height: MediaQuery.of(context).size.height / 1.5,
+                  width: MediaQuery.of(context).size.width / 1.2,
                   child: WebView(
-                    initialUrl: "${widget.pluginURL}?api_key=${widget.apiKey}&t=${DateTime.now().millisecondsSinceEpoch}",
+                    initialUrl:
+                        "${widget.pluginURL}?api_key=${widget.apiKey}&t=${DateTime.now().millisecondsSinceEpoch}",
                     javascriptMode: JavascriptMode.unrestricted,
                     javascriptChannels: <JavascriptChannel>[
                       JavascriptChannel(
@@ -99,18 +100,21 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
               if (widget.addCancelButton)
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: SizedBox(
+                  child: Container(
                     height: 60,
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         Expanded(
                           child: RaisedButton(
-                            child: Text(widget.cancelButtonLabel),
-                            onPressed: () {
-                              controller.hide();
-                            },
-                          ),
+                              child: Text(widget.cancelButtonLabel),
+                              onPressed: () {
+                                controller.hide();
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      new BorderRadius.circular(30.0)),
+                              color: Color(int.parse("0xFFf57300"))),
                         ),
                       ],
                     ),
